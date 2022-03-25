@@ -53,7 +53,10 @@ protected $middleware = [
   \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
   /*here list your middleware*/
 ];
-</pre><h4>Assigning Middleware To Routes</h4><p>Routes के लिए Middleware Register करने के लिए आपको <b>$routeMiddleware</b> property  में अपना Middleware  लिस्ट करना होता है।&nbsp;यहां पर Middleware को एक <b>key</b> से <b>associate</b> किया जाता है , ताकि उसे key का use करके routes पर apply कर सकें।&nbsp;</p><p></p><pre class="pre">protected $routeMiddleware = [
+</pre><h4>Assigning Middleware To Routes</h4><p>Routes के लिए Middleware Register करने के लिए आपको <b>$routeMiddleware</b> property  में अपना Middleware  लिस्ट करना होता है।&nbsp;यहां पर Middleware को एक <b>key</b> से <b>associate</b> किया जाता है , ताकि उसे key का use करके routes पर apply कर सकें।&nbsp;</p><p></p>
+
+```diff
+protected $routeMiddleware = [
     'auth' =&gt; \App\Http\Middleware\Authenticate::class,
     'auth.basic' =&gt; \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
     'bindings' =&gt; \Illuminate\Routing\Middleware\SubstituteBindings::class,
@@ -64,9 +67,11 @@ protected $middleware = [
     'throttle' =&gt; \Illuminate\Routing\Middleware\ThrottleRequests::class,
     'verified' =&gt; \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
-    'mymiddleware' =&gt; \App\Http\Middleware\MyMiddleware::class,
++    'mymiddleware' =&gt; \App\Http\Middleware\MyMiddleware::class,
 ];
-</pre><br><p>एक बार $routeMiddleware Register होने के बाद उसे अपने route में use कर सकते हैं।</p><pre class="pre">Route::get('testurl', 'Controller@method')-&gt;middleware('mymiddleware');</pre><br><p>हालाँकि  Middleware को आप routes में कई तरह से use कर सकते हैं , कुछ examples इस प्रकार हैं।</p><pre class="pre">Route::get('/', function () {
+```
+
+<br><p>एक बार $routeMiddleware Register होने के बाद उसे अपने route में use कर सकते हैं।</p><pre class="pre">Route::get('testurl', 'Controller@method')-&gt;middleware('mymiddleware');</pre><br><p>हालाँकि  Middleware को आप routes में कई तरह से use कर सकते हैं , कुछ examples इस प्रकार हैं।</p><pre class="pre">Route::get('/', function () {
     //
 })-&gt;middleware('mymiddleware');
 
