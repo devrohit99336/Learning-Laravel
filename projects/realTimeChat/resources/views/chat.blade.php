@@ -7,7 +7,7 @@
                 <div class="card">
                     <div class="card-header">{{ __('Dashboard') }}</div>
 
-                    Chat
+                    <chat />
                 </div>
             </div>
         </div>
