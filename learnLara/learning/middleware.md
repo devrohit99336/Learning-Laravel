@@ -38,37 +38,39 @@ class MyMiddleware
 
 ><p class="alert alert-primary">handle method में <b>return $next($request);</b> statement से  पहले लिखा गया code Request handle होने से <b>पहले</b> run होता है , जबकि return $next($request); के बाद लिखा गया code Request Handle hone के <b>बाद</b> run होता है|</p>
 
-<h3>Laravel Registering Middleware</h3><p>कोई भी Middleware <b>Run</b> होने के लिए उसका <b>Register</b> होना जरूरी है , बिना register किये वह Middleware Run नहीं होगा।  सभी Middlwares को <span class="dir-path">app/Http/Kernel.php</span> file में Register किया जाता है।</p><h4>Global Middleware</h4><p>अगर आप चाहते हैं कि , Middleware हर एक Request के लिए run हो तो उसे  Kernal.php Class की $middleware property में register करें।</p> <pre class="pre">/** inside app\Http\Kernel.php
-* The application's global HTTP middleware stack.
-*
-* These middleware are run during every request to your application.
-*
-* @var array
-*/
-protected $middleware = [
-  \App\Http\Middleware\TrustProxies::class,
-  \App\Http\Middleware\CheckForMaintenanceMode::class,
-  \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
-  \App\Http\Middleware\TrimStrings::class,
-  \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-  /*here list your middleware*/
-];
+<h3>Laravel Registering Middleware</h3><p>कोई भी Middleware <b>Run</b> होने के लिए उसका <b>Register</b> होना जरूरी है , बिना register किये वह Middleware Run नहीं होगा।  सभी Middlwares को <span class="dir-path">app/Http/Kernel.php</span> file में Register किया जाता है।</p><h4>Global Middleware</h4><p>अगर आप चाहते हैं कि , Middleware हर एक Request के लिए run हो तो उसे  Kernal.php Class की $middleware property में register करें।</p> <pre class="pre">/**
+     * The application's global HTTP middleware stack.
+     *
+     * These middleware are run during every request to your application.
+     *
+     * @var array<int, class-string|string>
+     */
+    protected $middleware = [
+        // \App\Http\Middleware\TrustHosts::class,
+        \App\Http\Middleware\TrustProxies::class,
+        \Fruitcake\Cors\HandleCors::class,
+        \App\Http\Middleware\PreventRequestsDuringMaintenance::class,
+        \Illuminate\Foundation\Http\Middleware\ValidatePostSize::class,
+        \App\Http\Middleware\TrimStrings::class,
+        \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
+        /*here list your middleware*/
+    ];
 </pre><h4>Assigning Middleware To Routes</h4><p>Routes के लिए Middleware Register करने के लिए आपको <b>$routeMiddleware</b> property  में अपना Middleware  लिस्ट करना होता है।&nbsp;यहां पर Middleware को एक <b>key</b> से <b>associate</b> किया जाता है , ताकि उसे key का use करके routes पर apply कर सकें।&nbsp;</p><p></p>
 
 ```diff
 protected $routeMiddleware = [
-    'auth' =&gt; \App\Http\Middleware\Authenticate::class,
-    'auth.basic' =&gt; \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
-    'bindings' =&gt; \Illuminate\Routing\Middleware\SubstituteBindings::class,
-    'cache.headers' =&gt; \Illuminate\Http\Middleware\SetCacheHeaders::class,
-    'can' =&gt; \Illuminate\Auth\Middleware\Authorize::class,
-    'guest' =&gt; \App\Http\Middleware\RedirectIfAuthenticated::class,
-    'signed' =&gt; \Illuminate\Routing\Middleware\ValidateSignature::class,
-    'throttle' =&gt; \Illuminate\Routing\Middleware\ThrottleRequests::class,
-    'verified' =&gt; \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'auth' => \App\Http\Middleware\Authenticate::class,
+        'auth.basic' => \Illuminate\Auth\Middleware\AuthenticateWithBasicAuth::class,
+        'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
+        'can' => \Illuminate\Auth\Middleware\Authorize::class,
+        'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
+        'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
+        'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
+        'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
+        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
-+    'mymiddleware' =&gt; \App\Http\Middleware\MyMiddleware::class,
-];
++        'mymiddleware' => \App\Http\Middleware\MyMiddleware::class,
+    ];
 ```
 
 <br><p>एक बार $routeMiddleware Register होने के बाद उसे अपने route में use कर सकते हैं।</p><pre class="pre">Route::get('testurl', 'Controller@method')-&gt;middleware('mymiddleware');</pre><br><p>हालाँकि  Middleware को आप routes में कई तरह से use कर सकते हैं , कुछ examples इस प्रकार हैं।</p><pre class="pre">Route::get('/', function () {

@@ -10,7 +10,6 @@
     <link href="{{ asset('/css/style.css') }}" rel="stylesheet">
     <script src="{{ asset('js/admin.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
@@ -21,7 +20,7 @@
             <h1>Faith Art</h1>
         </header>
         <nav>
-            <a href="{{ url('/') }}">Home</a>
+            <a href="{{ url('/admin') }}">Home</a>
             <a href="{{ route('about') }}">About</a>
             <a href="{{ route('blog') }}">Blog</a>
             <a href="{{ route('home') }}">Gallery</a>
@@ -46,13 +45,12 @@
                             </a>
                         </ol>
                     </div>
-                    <img src="https://i.imgur.com/WRe0cLr.jpg" alt="admin"></a>
+                    <img src="https://i.imgur.com/WRe0cLr.jpg" alt="blog"></a>
 
                 </div>
             </div>
         </main>
     </div>
-
 </body>
 
 </html>

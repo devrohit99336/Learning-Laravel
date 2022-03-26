@@ -46,7 +46,7 @@
                             </a>
                         </ol>
                     </div>
-                    <img src="https://i.imgur.com/WRe0cLr.jpg" alt="admin"></a>
+                    <img src="https://i.imgur.com/WRe0cLr.jpg" alt="about"></a>
 
                 </div>
             </div>

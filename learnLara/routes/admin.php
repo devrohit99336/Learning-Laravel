@@ -17,4 +17,24 @@ use App\Models\User;
 
 Route::get('/', function () {
     return view('admin');
+})->name('home');
+
+// Route::get('/blog', function () {
+//     return view('blog');
+// })->name('blog')->middleware('undeconstruction');
+
+// Route::get('/about', function () {
+//     return view('about');
+// })->name('about');
+
+Route::middleware(['construction'])->group(function(){
+
+    Route::get('/blog', function () {
+        return view('blog');
+    })->name('blog')->middleware('undeconstruction');
+
+    Route::get('/about', function () {
+        return view('about');
+    })->name('about');
+
 });

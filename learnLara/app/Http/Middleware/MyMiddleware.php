@@ -4,6 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Symfony\Component\HttpKernel\Exception\HttpException;
 
 class MyMiddleware
 {
@@ -16,6 +17,7 @@ class MyMiddleware
      */
     public function handle(Request $request, Closure $next)
     {
-        return $next($request);
+        //return $next($request);
+        throw new HttpException(404);
     }
 }
