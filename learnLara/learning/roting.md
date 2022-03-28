@@ -70,3 +70,5 @@ Route::get('/profile', function () {
 });
 </pre>
 </div>
+
+<br>
