@@ -33,21 +33,7 @@
             <br><br>
             <div id="homePagebox">
                 <div id="anthony">
-                    <div id="socialMedia">
-                        <ol>
-                            <a href="https://instagram.com">
-                                <li id="insta"></li>
-                            </a><br>
-                            <a href="https://tumblr.com/">
-                                <li id="tumblr"></li>
-                            </a><br>
-                            <a href="https://www.youtube.com">
-                                <li id="youtube"></li>
-                            </a>
-                        </ol>
-                    </div>
-                    <img src="https://i.imgur.com/WRe0cLr.jpg" alt="admin"></a>
-
+                    <x-card header="Hello rohit"/>
                 </div>
             </div>
         </main>
