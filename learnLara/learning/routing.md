@@ -1,6 +1,6 @@
 # [Route](https://www.learnhindituts.com/laravel/laravel-routing)
 
-## Laravel Application के लिए सभी route , routes directory में defined होते हैं। routes Directory में हम aaplication के सभी तरह के routes (web routes , api routes और console routes) रखते हैं।
+### Laravel Application के लिए सभी route , routes directory में defined होते हैं। routes Directory में हम aaplication के सभी तरह के routes (web routes , api routes और console routes) रखते हैं।
 
 <h3>Laravel Basic Routing</h3><p>Laravel में सबसे Basic route एक <b>URL</b> और <b>Closure</b> को accept करता है। जिसे कुछ इस तरह से लिखते हैं। </p><p>File Location : routes &gt; web.php</p><pre class="pre">Route::get('hello', function () {
 return 'Hello Laravel';

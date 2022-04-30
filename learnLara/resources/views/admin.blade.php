@@ -25,7 +25,6 @@
             <a href="{{ route('about') }}">About</a>
             <a href="{{ route('blog') }}">Blog</a>
             <a href="{{ route('home') }}">Gallery</a>
-            <a href="faithContact.html">Contact</a>
         </nav>
     </div>
     <div class="wrapper">
