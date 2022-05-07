@@ -28,7 +28,7 @@ Add the following facades to the **aliases** array:
 
 ```
 'JWTAuth' => Tymon\JWTAuth\Facades\JWTAuth::class, 
-    'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
+'JWTFactory' => Tymon\JWTAuth\Facades\JWTFactory::class,
 ```
 You need to publish the config file for JWT using the following command:
 ```

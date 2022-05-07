@@ -101,6 +101,12 @@
                     </div>
                 </div>
 
+                <div class="flex items-center justify-end mt-4">
+                    <a href="{{ route('google.redirect') }}">
+                        <img src="https://developers.google.com/identity/images/btn_google_signin_dark_normal_web.png" style="margin-left: 3em;">
+                    </a>
+                </div>
+
                 <div class="flex justify-center mt-4 sm:items-center sm:justify-between">
                     <div class="text-center text-sm text-gray-500 sm:text-left">
                         <div class="flex items-center">
