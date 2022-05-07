@@ -4,6 +4,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\api\v1\UserController;
 use App\Http\Controllers\api\v1\DataController;
+use App\Http\Controllers\api\v1\auth\GoogleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,6 +18,7 @@ use App\Http\Controllers\api\v1\DataController;
 */
 
 Route::group(['prefix' => 'v1'], function () {
+
     Route::post('/register', [UserController::class, 'register']);
     Route::post('/login', [UserController::class, 'authenticate']);
     Route::get('/open', [DataController::class, 'open']);
@@ -25,4 +27,11 @@ Route::group(['prefix' => 'v1'], function () {
         Route::get('/user', [UserController::class, 'getAuthenticatedUser']);
         Route::get('/closed', [DataController::class, 'closed']);
     });
+
+    // login with google
+    Route::group(['middleware' => ['web']], function () {
+        Route::get('/google/redirect', [GoogleController::class, 'redirectToGoogle'])->name('google.redirect');
+        Route::get('/google/callback', [GoogleController::class, 'handleGoogleCallback'])->name('google.callback');
+    });
 });
+
